@@ -1,0 +1,2283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDDIE INNOVATION S.A. de C.V. - Gobierno de TI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables de diseño y colores corporativos */
+        :root {
+            --primary-blue: #1a365d;
+            --secondary-blue: #2d5aa0;
+            --accent-orange: #f97316;
+            --accent-green: #10b981;
+            --light-gray: #f8fafc;
+            --medium-gray: #e2e8f0;
+            --dark-gray: #475569;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+        }
+
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-gray);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-blue);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--medium-gray);
+            margin-top: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-blue);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-blue);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-orange);
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .bg-white {
+            background-color: var(--white);
+        }
+
+        .bg-light {
+            background-color: var(--light-gray);
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--secondary-blue);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-orange);
+        }
+
+        .btn-accent:hover {
+            background-color: #ea580c;
+        }
+
+        /* Header y navegación */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            color: var(--secondary-blue);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+        }
+
+        .logo-text span {
+            color: var(--accent-orange);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-orange);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Hero / Portada */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Índice / Navegación lateral */
+        .content-wrapper {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .sidebar {
+            flex: 0 0 250px;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--medium-gray);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.75rem;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            border-left: 3px solid transparent;
+            padding-left: 0.5rem;
+        }
+
+        .sidebar-nav a:hover,
+        .sidebar-nav a.active {
+            color: var(--secondary-blue);
+            border-left-color: var(--accent-orange);
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        /* Tarjetas */
+        .card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-icon {
+            color: var(--accent-orange);
+        }
+
+        /* Tablas */
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        th {
+            background-color: var(--light-gray);
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        tr:hover {
+            background-color: rgba(45, 90, 160, 0.05);
+        }
+
+        /* Acordeón */
+        .accordion {
+            margin-bottom: 1rem;
+        }
+
+        .accordion-header {
+            background-color: var(--light-gray);
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            background-color: var(--medium-gray);
+        }
+
+        .accordion-header.active {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        .accordion-content {
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            display: none;
+        }
+
+        /* Tabs */
+        .tabs {
+            margin-bottom: 2rem;
+        }
+
+        .tab-header {
+            display: flex;
+            border-bottom: 2px solid var(--medium-gray);
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            color: var(--secondary-blue);
+        }
+
+        .tab-btn.active {
+            color: var(--secondary-blue);
+            border-bottom-color: var(--accent-orange);
+        }
+
+        .tab-content {
+            padding: 1.5rem 0;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Diagramas */
+        .diagram {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .bsc-dimension {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            background-color: var(--light-gray);
+        }
+
+        .dimension-financial {
+            border-top: 4px solid var(--accent-green);
+        }
+
+        .dimension-customer {
+            border-top: 4px solid var(--secondary-blue);
+        }
+
+        .dimension-internal {
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        .dimension-growth {
+            border-top: 4px solid #8b5cf6;
+        }
+
+        .dimension-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: static;
+                width: 100%;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1.5rem;
+                right: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Estilos específicos para elementos */
+        .mission-vision-values {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .mvv-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--secondary-blue);
+        }
+
+        .mvv-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .values-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .values-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .values-list li:last-child {
+            border-bottom: none;
+        }
+
+        .value-icon {
+            color: var(--accent-green);
+        }
+
+        .cascade-diagram {
+            position: relative;
+            padding: 2rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .cascade-level {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .cascade-level:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--medium-gray);
+        }
+
+        .cascade-level:last-child:before {
+            bottom: 50%;
+        }
+
+        .cascade-level:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 2rem;
+            height: 2px;
+            background-color: var(--medium-gray);
+        }
+
+        .cascade-item {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--secondary-blue);
+        }
+
+        .meta-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-corporativa {
+            background-color: rgba(45, 90, 160, 0.1);
+            color: var(--secondary-blue);
+        }
+
+        .meta-it {
+            background-color: rgba(249, 115, 22, 0.1);
+            color: var(--accent-orange);
+        }
+
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .risk-cell {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .risk-low {
+            background-color: var(--accent-green);
+        }
+
+        .risk-medium {
+            background-color: #f59e0b;
+        }
+
+        .risk-high {
+            background-color: #ef4444;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .inventory-item {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--accent-orange);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: var(--medium-gray);
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--accent-green);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y navegación -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-robot logo-icon"></i>
+                <div class="logo-text">RDDIE <span>INNOVATION</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#introduccion">Introducción</a></li>
+                <li><a href="#servicio">Servicio IT</a></li>
+                <li><a href="#empresa">Empresa</a></li>
+                <li><a href="#metas">Metas</a></li>
+                <li><a href="#documentos">Documentos</a></li>
+                <li><a href="#continuidad">Continuidad</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Portada / Hero -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Gobierno de TI Integral</h1>
+            <p>Soluciones tecnológicas innovadoras alineadas con los objetivos estratégicos de negocio, utilizando marcos de referencia COBIT, ITIL e ISO 27000 para garantizar excelencia operativa y seguridad de la información.</p>
+            <div class="hero-buttons">
+                <a href="#documentos" class="btn">Ver Documentación</a>
+                <a href="#contacto" class="btn btn-accent">Contactar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido principal -->
+    <div class="container content-wrapper">
+        <!-- Navegación lateral / Índice -->
+        <aside class="sidebar">
+            <h3>Navegación</h3>
+            <ul class="sidebar-nav" id="sidebarNav">
+                <li><a href="#introduccion" class="active">Introducción</a></li>
+                <li><a href="#objetivo">Objetivo</a></li>
+                <li><a href="#descripcion">Descripción del Servicio</a></li>
+                <li><a href="#mision-vision-valores">Misión, Visión y Valores</a></li>
+                <li><a href="#metas-corporativas">Metas Corporativas</a></li>
+                <li><a href="#metas-it">Metas IT</a></li>
+                <li><a href="#cascada-metas">Cascada de Metas</a></li>
+                <li><a href="#mapa-estrategico">Mapa Estratégico</a></li>
+                <li><a href="#caso-negocio">Caso de Negocio</a></li>
+                <li><a href="#cedula-servicio">Cédula de Servicio</a></li>
+                <li><a href="#inventario-activos">Inventario de Activos</a></li>
+                <li><a href="#matriz-riesgos">Matriz de Riesgos</a></li>
+                <li><a href="#bia">BIA Táctico y Operacional</a></li>
+                <li><a href="#plan-continuidad">Plan de Continuidad</a></li>
+            </ul>
+            
+            <div class="card" style="margin-top: 2rem;">
+                <h3><i class="fas fa-download card-icon"></i> Descargables</h3>
+                <p>Documentos completos en formato PDF:</p>
+                <ul>
+                    <li><a href="caso_negocio_rddie.pdf" download><i class="fas fa-file-pdf"></i> Caso de Negocio</a></li>
+                    <li><a href="cedula_servicio_itil.pdf" download><i class="fas fa-file-pdf"></i> Cédula de Servicio</a></li>
+                    <li><a href="plan_continuidad.pdf" download><i class="fas fa-file-pdf"></i> Plan de Continuidad</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Introducción -->
+            <section class="section" id="introduccion">
+                <h2>Introducción</h2>
+                <div class="card">
+                    <p>RDDIE INNOVATION S.A. de C.V. es una empresa mexicana líder en soluciones integrales de tecnologías de la información, especializada en optimizar operaciones empresariales mediante innovación tecnológica y mejora continua. Con un enfoque centrado en el cliente, nuestra organización se distingue por ofrecer servicios de TI confiables, personalizados y de alta calidad.</p>
+                    
+                    <p>En el contexto actual de transformación digital acelerada, RDDIE INNOVATION ha identificado la necesidad de evolucionar hacia modelos de operación más eficientes, implementando soluciones de automatización inteligente que permitan reducir tiempos de respuesta, minimizar errores humanos y maximizar la productividad operativa.</p>
+                    
+                    <p>Este sitio web presenta nuestro marco integral de gobierno de TI, alineado con estándares internacionales como COBIT, ITIL e ISO 27000, demostrando nuestro compromiso con la excelencia operativa, la seguridad de la información y la entrega de valor sostenible a nuestros clientes.</p>
+                    
+                    <p>Nuestra metodología integrada combina estrategia, procesos, tecnología y personas para garantizar que cada solución tecnológica implementada contribuya directamente al logro de los objetivos empresariales, manteniendo siempre los más altos estándares de calidad y seguridad.</p>
+                </div>
+            </section>
+
+            <!-- Objetivo -->
+            <section class="section bg-light" id="objetivo">
+                <h2>Objetivo del Servicio de IT</h2>
+                <div class="card">
+                    <h3><i class="fas fa-bullseye card-icon"></i> Objetivo Principal</h3>
+                    <p>Optimizar los procesos empresariales mediante la implementación de una plataforma de automatización BPA/RPA que permita reducir en un 20% los tiempos de respuesta a incidencias, mejorar la continuidad operativa y elevar la satisfacción de usuarios internos y externos para finales de 2026, alineándose con los objetivos estratégicos corporativos y estándares de calidad internacionales.</p>
+                    
+                    <h3><i class="fas fa-chart-line card-icon"></i> Objetivos Específicos</h3>
+                    <ul>
+                        <li>Implementar un sistema de gestión de tickets con priorización automática.</li>
+                        <li>Automatizar el 40% de los procesos administrativos repetitivos.</li>
+                        <li>Reducir los errores operativos en un 30% mediante automatización.</li>
+                        <li>Capacitar al 100% del personal de soporte en metodologías ágiles y uso de BPA/RPA.</li>
+                        <li>Garantizar una disponibilidad del 99.5% de la plataforma de automatización.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Descripción del Servicio -->
+            <section class="section" id="descripcion">
+                <h2>Descripción del Servicio</h2>
+                <div class="card">
+                    <p>El servicio consiste en una plataforma integral de Automatización de Procesos Empresariales (BPA/RPA) que permite optimizar actividades operativas repetitivas mediante la implementación de robots de software inteligentes.</p>
+                    
+                    <h3><i class="fas fa-cogs card-icon"></i> Componentes del Servicio</h3>
+                    <div class="inventory-grid">
+                        <div class="inventory-item">
+                            <h4><i class="fas fa-search"></i> Análisis de Procesos</h4>
+                            <p>Identificación y evaluación de procesos candidatos a automatización.</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h4><i class="fas fa-project-diagram"></i> Diseño de Flujos</h4>
+                            <p>Diseño y documentación de flujos de trabajo automatizados.</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h4><i class="fas fa-robot"></i> Implementación Bots</h4>
+                            <p>Desarrollo, implementación y despliegue de robots de software.</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h4><i class="fas fa-link"></i> Integración</h4>
+                            <p>Conexión con sistemas existentes (ERP, CRM, tickets).</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h4><i class="fas fa-chart-bar"></i> Monitoreo</h4>
+                            <p>Seguimiento en tiempo real y gestión del rendimiento.</p>
+                        </div>
+                        <div class="inventory-item">
+                            <h4><i class="fas fa-graduation-cap"></i> Capacitación</h4>
+                            <p>Formación especializada para usuarios y personal técnico.</p>
+                        </div>
+                    </div>
+                    
+                    <h3><i class="fas fa-check-circle card-icon"></i> Alcance del Servicio</h3>
+                    <ul>
+                        <li>Análisis de procesos candidatos a automatización.</li>
+                        <li>Diseño y documentación de flujos automatizados.</li>
+                        <li>Implementación de robots de software (RPA).</li>
+                        <li>Integración con plataformas existentes (ERP, CRM, sistema de tickets).</li>
+                        <li>Monitoreo y aseguramiento de la continuidad del servicio.</li>
+                        <li>Capacitación a usuarios finales y personal técnico.</li>
+                        <li>Soporte y mantenimiento continuo de la plataforma.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Misión, Visión y Valores -->
+            <section class="section bg-light" id="mision-vision-valores">
+                <h2>Misión, Visión y Valores</h2>
+                <div class="mission-vision-values">
+                    <div class="mvv-card">
+                        <h3><i class="fas fa-bullseye"></i> Misión</h3>
+                        <p>Brindar soluciones integrales de tecnologías de la información que optimicen la operación de nuestros clientes, garantizando soporte confiable, atención personalizada y un servicio basado en calidad, innovación y mejora continua.</p>
+                    </div>
+                    
+                    <div class="mvv-card">
+                        <h3><i class="fas fa-eye"></i> Visión</h3>
+                        <p>Ser reconocidos en 2030 como la empresa líder en servicios de TI en México, destacando por nuestra excelencia en soporte, innovación tecnológica y el desarrollo de talento especializado que impulse la transformación digital de nuestros clientes.</p>
+                    </div>
+                    
+                    <div class="mvv-card">
+                        <h3><i class="fas fa-heart"></i> Valores</h3>
+                        <ul class="values-list">
+                            <li><i class="fas fa-handshake value-icon"></i> <strong>Compromiso:</strong> Cumplir con los acuerdos y tiempos establecidos.</li>
+                            <li><i class="fas fa-lightbulb value-icon"></i> <strong>Innovación:</strong> Promover soluciones creativas y actualizadas.</li>
+                            <li><i class="fas fa-comment-dots value-icon"></i> <strong>Transparencia:</strong> Mantener comunicación clara y honesta.</li>
+                            <li><i class="fas fa-users value-icon"></i> <strong>Colaboración:</strong> Fomentar el trabajo en equipo.</li>
+                            <li><i class="fas fa-award value-icon"></i> <strong>Calidad:</strong> Garantizar servicios de alto nivel.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metas Corporativas -->
+            <section class="section" id="metas-corporativas">
+                <h2>Metas Corporativas (Realizadas con COBIT)</h2>
+                <div class="card">
+                    <p>Las siguientes metas corporativas han sido definidas utilizando el marco de referencia COBIT y están alineadas con las dimensiones del Balanced Scorecard:</p>
+                    
+                    <div class="bsc-dimension dimension-financial">
+                        <i class="fas fa-chart-line dimension-icon"></i>
+                        <h3>Dimensión Financiera</h3>
+                        <p><strong>Meta Corporativa:</strong> Incrementar en un 15% los ingresos por contratos de soporte TI en el primer semestre de 2026.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%"></div>
+                        </div>
+                        <small>Progreso: 45%</small>
+                    </div>
+                    
+                    <div class="bsc-dimension dimension-customer">
+                        <i class="fas fa-users dimension-icon"></i>
+                        <h3>Dimensión Cliente/Usuario</h3>
+                        <p><strong>Meta Corporativa:</strong> Alcanzar un 95% de satisfacción de clientes en encuestas de soporte técnico para finales de 2026.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                        <small>Progreso: 60%</small>
+                    </div>
+                    
+                    <div class="bsc-dimension dimension-internal">
+                        <i class="fas fa-cogs dimension-icon"></i>
+                        <h3>Dimensión Interno/Proceso</h3>
+                        <p><strong>Meta Corporativa:</strong> Reducir en un 20% los tiempos de respuesta a incidencias para el tercer trimestre de 2026.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 35%"></div>
+                        </div>
+                        <small>Progreso: 35%</small>
+                    </div>
+                    
+                    <div class="bsc-dimension dimension-growth">
+                        <i class="fas fa-graduation-cap dimension-icon"></i>
+                        <h3>Dimensión Aprendizaje y Crecimiento</h3>
+                        <p><strong>Meta Corporativa:</strong> Lograr que el 70% del personal de soporte obtenga certificaciones ITIL o equivalentes en 2026.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%"></div>
+                        </div>
+                        <small>Progreso: 50%</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metas IT -->
+            <section class="section bg-light" id="metas-it">
+                <h2>Metas IT (Realizadas con COBIT)</h2>
+                <div class="card">
+                    <p>Metas específicas de Tecnologías de la Información alineadas con las dimensiones del Balanced Scorecard y el marco COBIT:</p>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Dimensión BSC</th>
+                                    <th>Meta IT</th>
+                                    <th>Indicador COBIT</th>
+                                    <th>Fecha Objetivo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="meta-tag meta-corporativa">Financiera</span></td>
+                                    <td>Optimizar la inversión en tecnología para lograr un ROI del 25% en proyectos de automatización</td>
+                                    <td>EDM03.01</td>
+                                    <td>Q4 2026</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="meta-tag meta-corporativa">Cliente/Usuario</span></td>
+                                    <td>Implementar sistema de tickets con priorización automática que reduzca tiempo de atención en 30%</td>
+                                    <td>DSS02.05</td>
+                                    <td>Q2 2026</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="meta-tag meta-corporativa">Interno/Proceso</span></td>
+                                    <td>Automatizar 40% de procesos administrativos repetitivos mediante BPA/RPA</td>
+                                    <td>BAI06.03</td>
+                                    <td>Q3 2026</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="meta-tag meta-corporativa">Aprendizaje y Crecimiento</span></td>
+                                    <td>Capacitar al 100% del personal de TI en metodologías ágiles y gestión de servicios</td>
+                                    <td>APO07.04</td>
+                                    <td>Q1 2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cascada de Metas -->
+            <section class="section" id="cascada-metas">
+                <h2>Cascada de Metas (Realizadas con COBIT)</h2>
+                <div class="card">
+                    <p>Relación de dependencias y mapeo entre metas corporativas y metas de TI:</p>
+                    
+                    <div class="cascade-diagram">
+                        <div class="cascade-level">
+                            <div class="cascade-item">
+                                <h4><span class="meta-tag meta-corporativa">Meta Corporativa Principal</span></h4>
+                                <p><strong>Reducir en 20% los tiempos de respuesta a incidencias</strong></p>
+                                <p>Objetivo estratégico alineado con la dimensión Interno/Proceso del BSC</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cascade-level">
+                            <div class="cascade-item">
+                                <h4><span class="meta-tag meta-it">Meta IT Primaria</span></h4>
+                                <p><strong>Implementar sistema de tickets automatizado con priorización inteligente</strong></p>
+                                <p>COBIT DSS02.05 - Gestión de solicitudes de servicio</p>
+                                
+                                <div style="margin-top: 1rem;">
+                                    <p><strong>Sub-metas IT:</strong></p>
+                                    <ul>
+                                        <li>Desarrollar algoritmo de priorización basado en impacto y urgencia</li>
+                                        <li>Integrar con sistemas existentes (ERP/CRM)</li>
+                                        <li>Capacitar personal en uso del sistema (100% en Q1 2026)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="cascade-level">
+                            <div class="cascade-item">
+                                <h4><span class="meta-tag meta-corporativa">Meta Corporativa Secundaria 1</span></h4>
+                                <p><strong>Aumentar satisfacción del cliente al 95%</strong></p>
+                                <p>Objetivo alineado con la dimensión Cliente/Usuario del BSC</p>
+                                
+                                <div style="margin-top: 1rem;">
+                                    <p><strong>Meta IT Relacionada:</strong></p>
+                                    <p>Implementar portal de autoservicio para clientes con seguimiento en tiempo real</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="cascade-level">
+                            <div class="cascade-item">
+                                <h4><span class="meta-tag meta-corporativa">Meta Corporativa Secundaria 2</span></h4>
+                                <p><strong>Incrementar ingresos en 15%</strong></p>
+                                <p>Objetivo alineado con la dimensión Financiera del BSC</p>
+                                
+                                <div style="margin-top: 1rem;">
+                                    <p><strong>Meta IT Relacionada:</strong></p>
+                                    <p>Desarrollar métricas de SLA y reporting automático para demostración de valor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mapa Estratégico -->
+            <section class="section bg-light" id="mapa-estrategico">
+                <h2>Mapa Estratégico (Realizado con COBIT)</h2>
+                <div class="card">
+                    <p>Diagrama de relaciones causa-efecto entre las diferentes perspectivas del Balanced Scorecard:</p>
+                    
+                    <div class="diagram">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <h3 style="color: var(--primary-blue);">MAPEO ESTRATÉGICO - RELACIÓN CAUSA-EFECTO</h3>
+                        </div>
+                        
+                        <!-- Aprendizaje y Crecimiento -->
+                        <div style="background-color: #f5f3ff; padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 1.5rem; border-left: 4px solid #8b5cf6;">
+                            <h4><i class="fas fa-graduation-cap"></i> APRENDIZAJE Y CRECIMIENTO</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                                <span class="meta-tag" style="background-color: #8b5cf6; color: white;">70% personal certificado en ITIL</span>
+                                <span class="meta-tag" style="background-color: #8b5cf6; color: white;">100% capacitación en metodologías ágiles</span>
+                            </div>
+                            <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: var(--dark-gray);">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Interno/Proceso -->
+                        <div style="background-color: #fffbeb; padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 1.5rem; border-left: 4px solid #f59e0b;">
+                            <h4><i class="fas fa-cogs"></i> INTERNO/PROCESO</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                                <span class="meta-tag" style="background-color: #f59e0b; color: white;">Reducir tiempos de respuesta 20%</span>
+                                <span class="meta-tag" style="background-color: #f59e0b; color: white;">Automatizar 40% procesos administrativos</span>
+                            </div>
+                            <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: var(--dark-gray);">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Cliente/Usuario -->
+                        <div style="background-color: #dbeafe; padding: 1.5rem; border-radius: var(--border-radius); margin-bottom: 1.5rem; border-left: 4px solid #3b82f6;">
+                            <h4><i class="fas fa-users"></i> CLIENTE/USUARIO</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                                <span class="meta-tag" style="background-color: #3b82f6; color: white;">95% satisfacción del cliente</span>
+                                <span class="meta-tag" style="background-color: #3b82f6; color: white;">Sistema de tickets con priorización automática</span>
+                            </div>
+                            <div style="text-align: center; margin: 1rem 0; font-size: 1.5rem; color: var(--dark-gray);">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Financiera -->
+                        <div style="background-color: #dcfce7; padding: 1.5rem; border-radius: var(--border-radius); border-left: 4px solid #10b981;">
+                            <h4><i class="fas fa-chart-line"></i> FINANCIERA</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                                <span class="meta-tag" style="background-color: #10b981; color: white;">Incrementar ingresos 15%</span>
+                                <span class="meta-tag" style="background-color: #10b981; color: white;">ROI 25% en proyectos de automatización</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3><i class="fas fa-lightbulb card-icon"></i> Relaciones Causa-Efecto</h3>
+                    <ul>
+                        <li><strong>Capacitación del personal (Aprendizaje)</strong> → Mejora en procesos internos</li>
+                        <li><strong>Automatización de procesos (Interno)</strong> → Reducción de tiempos de respuesta</li>
+                        <li><strong>Reducción de tiempos (Cliente)</strong> → Aumento de satisfacción del cliente</li>
+                        <li><strong>Satisfacción del cliente (Financiera)</strong> → Incremento de ingresos y retención</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Caso de Negocio -->
+            <section class="section" id="caso-negocio">
+                <h2>Caso de Negocio</h2>
+                <div class="card">
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>1. Información General del Proyecto</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Nombre del Proyecto:</th>
+                                        <td>Automatización de Procesos Empresariales (BPA/RPA)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha Propuesta de Inicio:</th>
+                                        <td>25 de agosto del 2025</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha de Fin Propuesta:</th>
+                                        <td>7 de enero del 2026</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Administrador del Proyecto:</th>
+                                        <td>Diego Iván Rodríguez Reyes</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>2. Antecedentes y Justificación</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>RDDIE INNOVATION S.A. de C.V. ha identificado la necesidad de evolucionar hacia la automatización inteligente de sus procesos internos y de atención al cliente, con el fin de mantener su competitividad en el mercado tecnológico y cumplir con estándares internacionales de eficiencia.</p>
+                            <p>El entorno empresarial actual demanda respuestas más ágiles, servicios digitales automatizados y una gestión operativa que minimice errores humanos y reduzca los tiempos de entrega.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>3. Objetivo del Proyecto</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p><strong>Implementar una plataforma de automatización BPA/RPA que optimice los procesos empresariales, mejore la eficiencia operativa y reduzca los tiempos de respuesta a incidencias.</strong></p>
+                            <p>Objetivos específicos:</p>
+                            <ul>
+                                <li>Reducir en un 20% los tiempos de respuesta a incidencias</li>
+                                <li>Mejorar la satisfacción de los clientes en un 95% para 2026</li>
+                                <li>Automatizar procesos administrativos y de soporte repetitivos</li>
+                                <li>Integrar con plataformas actuales de gestión de TI</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>4. Alcance</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Implementación de un sistema de tickets con priorización automática</li>
+                                <li>Automatización de procesos administrativos y de soporte</li>
+                                <li>Capacitación del personal en el uso de BPA/RPA</li>
+                                <li>Integración con plataformas actuales de gestión de TI</li>
+                                <li>Monitoreo en tiempo real de la eficiencia de procesos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>5. Beneficios Esperados</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Incremento del 15% en los ingresos por contratos de soporte TI</li>
+                                <li>Reducción del 20% en los tiempos de respuesta a incidencias</li>
+                                <li>Mayor satisfacción de clientes (95%)</li>
+                                <li>Reducción de errores operativos en un 30%</li>
+                                <li>Mejora en la productividad del personal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cédula de Servicio -->
+            <section class="section bg-light" id="cedula-servicio">
+                <h2>Cédula de Servicio (ITIL)</h2>
+                <div class="card">
+                    <div class="tabs">
+                        <div class="tab-header">
+                            <button class="tab-btn active" data-tab="tab1">Información General</button>
+                            <button class="tab-btn" data-tab="tab2">Matriz RACI</button>
+                            <button class="tab-btn" data-tab="tab3">Niveles de Servicio</button>
+                            <button class="tab-btn" data-tab="tab4">Infraestructura</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="tab1">
+                            <h3>Información General del Servicio</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Nombre del Servicio:</th>
+                                        <td>Plataforma de Automatización de Procesos (BPA/RPA)</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tipo de Servicio:</th>
+                                        <td>Nuevo</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha de Elaboración:</th>
+                                        <td>23/11/2025</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Objetivo del Servicio:</th>
+                                        <td>Optimizar procesos empresariales mediante automatización inteligente, reduciendo en 20% los tiempos de respuesta y mejorando la continuidad operativa</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <h3>Usuarios del Servicio</h3>
+                            <ul>
+                                <li>Personal de soporte técnico</li>
+                                <li>Área administrativa</li>
+                                <li>Jefaturas operativas</li>
+                                <li>Personal de análisis de procesos</li>
+                                <li>Dirección de TI</li>
+                                <li>Clientes internos que utilizan sistemas integrados</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tab-content" id="tab2">
+                            <h3>Matriz RACI - Responsabilidades</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Actividad / ROL</th>
+                                            <th>Administrador del Servicio</th>
+                                            <th>Ingeniero de Automatización</th>
+                                            <th>Jefe de TI</th>
+                                            <th>Documentador</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Identificación de procesos candidatos</td>
+                                            <td>A</td>
+                                            <td>C</td>
+                                            <td>R</td>
+                                            <td>C</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Diseño de flujos automatizados</td>
+                                            <td>C</td>
+                                            <td>R</td>
+                                            <td>C</td>
+                                            <td>C</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Desarrollo e implementación de bots</td>
+                                            <td>C</td>
+                                            <td>A/R</td>
+                                            <td>C</td>
+                                            <td>C</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pruebas y validación</td>
+                                            <td>R</td>
+                                            <td>A</td>
+                                            <td>C</td>
+                                            <td>C</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Documentación del servicio</td>
+                                            <td>C</td>
+                                            <td>C</td>
+                                            <td>C</td>
+                                            <td>A/R</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Capacitación a usuarios</td>
+                                            <td>R</td>
+                                            <td>C</td>
+                                            <td>C</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mantenimiento y monitoreo</td>
+                                            <td>C</td>
+                                            <td>A/R</td>
+                                            <td>C</td>
+                                            <td>C</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><strong>Leyenda:</strong> R = Responsable, A = Accountable (Rendición de cuentas), C = Consultado, I = Informado</p>
+                        </div>
+                        
+                        <div class="tab-content" id="tab3">
+                            <h3>Acuerdos de Nivel de Servicio (SLA/OLA)</h3>
+                            
+                            <h4>SLA - Acuerdos con Usuarios</h4>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Tipo de Nivel</th>
+                                        <th>Compromiso</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Disponibilidad</td>
+                                        <td>Servicio disponible 24/7 para procesos automatizados</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Soporte</td>
+                                        <td>Atención remota: 24/7 | Atención presencial: 7:00 a 22:00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seguridad</td>
+                                        <td>Manejo seguro de datos conforme a políticas internas, encriptación de datos</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <h4>OLA - Acuerdos Internos de Infraestructura</h4>
+                            <div class="table-container">
+                                <table>
+                                    <tr>
+                                        <th>Elemento</th>
+                                        <th>Métrica</th>
+                                        <th>Compromiso</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Aplicaciones</td>
+                                        <td>Disponibilidad</td>
+                                        <td>99.5% mensual del sistema de automatización</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aplicaciones</td>
+                                        <td>Capacidad</td>
+                                        <td>Ejecución de hasta 300 procesos concurrentes sin degradación</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Infraestructura</td>
+                                        <td>Disponibilidad</td>
+                                        <td>99.9% de servidores RPA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bases de Datos</td>
+                                        <td>Respaldos</td>
+                                        <td>Respaldo diario automático, retención de 30 días</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Redes</td>
+                                        <td>Latencia</td>
+                                        <td>< 100ms para comunicaciones internas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seguridad</td>
+                                        <td>Cumplimiento</td>
+                                        <td>100% de controles RBAC y autenticación federada</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="tab4">
+                            <h3>Infraestructura del Servicio</h3>
+                            <ul>
+                                <li>Servidor de orquestación RPA</li>
+                                <li>Servidores de ejecución de bots (atendidos/no atendidos)</li>
+                                <li>Base de datos para trazabilidad y logs</li>
+                                <li>Integración con sistema de tickets</li>
+                                <li>Consola administrativa</li>
+                                <li>Licencias BPA/RPA</li>
+                                <li>Servidores de respaldo (DR)</li>
+                                <li>Infraestructura de red dedicada</li>
+                            </ul>
+                            
+                            <h3>Arquitectura del Servicio</h3>
+                            <div style="text-align: center; padding: 2rem; background-color: var(--light-gray); border-radius: var(--border-radius);">
+                                <div style="display: inline-block; text-align: left;">
+                                    <div style="margin-bottom: 1rem;"><i class="fas fa-network-wired"></i> <strong>Orquestador</strong></div>
+                                    <div style="margin-left: 2rem; margin-bottom: 1rem;"><i class="fas fa-robot"></i> <strong>Bots</strong></div>
+                                    <div style="margin-left: 2rem; margin-bottom: 1rem;"><i class="fas fa-ticket-alt"></i> <strong>Sistema de tickets</strong></div>
+                                    <div style="margin-left: 2rem; margin-bottom: 1rem;"><i class="fas fa-database"></i> <strong>Base de datos</strong></div>
+                                    <div style="margin-left: 2rem; margin-bottom: 1rem;"><i class="fas fa-desktop"></i> <strong>Consola de monitoreo</strong></div>
+                                    <div style="margin-left: 2rem;"><i class="fas fa-exchange-alt"></i> <strong>Integración ERP/CRM</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inventario de Activos -->
+            <section class="section" id="inventario-activos">
+                <h2>Inventario de Activos</h2>
+                <div class="card">
+                    <div class="tabs">
+                        <div class="tab-header">
+                            <button class="tab-btn active" data-tab="inv1">Proceso 1: Gestión de Tickets</button>
+                            <button class="tab-btn" data-tab="inv2">Proceso 2: Automatización BPA/RPA</button>
+                            <button class="tab-btn" data-tab="inv3">Proceso 3: Monitoreo</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="inv1">
+                            <h3>Activos - Gestión de Tickets</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Activo</th>
+                                            <th>Tipo</th>
+                                            <th>Ubicación</th>
+                                            <th>Responsable</th>
+                                            <th>Crítico</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Sistema de Tickets ITSM</td>
+                                            <td>Software</td>
+                                            <td>Servidor App-01</td>
+                                            <td>Diego Rodríguez</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Base de Datos de Tickets</td>
+                                            <td>Datos</td>
+                                            <td>Servidor DB-02</td>
+                                            <td>Ricardo Rangel</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Servidor de Aplicación</td>
+                                            <td>Hardware</td>
+                                            <td>Data Center Principal</td>
+                                            <td>Erick Ruiz</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Interfaz Web</td>
+                                            <td>Software</td>
+                                            <td>Servidor Web-01</td>
+                                            <td>Ángel Ramírez</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>API de Integración</td>
+                                            <td>Software</td>
+                                            <td>Servidor API-01</td>
+                                            <td>Marco Reyes</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="inv2">
+                            <h3>Activos - Automatización BPA/RPA</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Activo</th>
+                                            <th>Tipo</th>
+                                            <th>Ubicación</th>
+                                            <th>Responsable</th>
+                                            <th>Crítico</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Servidor Orquestador RPA</td>
+                                            <td>Hardware</td>
+                                            <td>Data Center Principal</td>
+                                            <td>Ricardo Rangel</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Licencias BPA/RPA Enterprise</td>
+                                            <td>Licencia</td>
+                                            <td>Nube Corporativa</td>
+                                            <td>Diego Rodríguez</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bots de Automatización</td>
+                                            <td>Software</td>
+                                            <td>Servidores RPA-01 a 04</td>
+                                            <td>Erick Ruiz</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Biblioteca de Procesos</td>
+                                            <td>Datos</td>
+                                            <td>Servidor DB-03</td>
+                                            <td>Ángel Ramírez</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Herramientas de Desarrollo</td>
+                                            <td>Software</td>
+                                            <td>Estaciones de Trabajo</td>
+                                            <td>Marco Reyes</td>
+                                            <td>No</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="inv3">
+                            <h3>Activos - Sistema de Monitoreo</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Activo</th>
+                                            <th>Tipo</th>
+                                            <th>Ubicación</th>
+                                            <th>Responsable</th>
+                                            <th>Crítico</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Plataforma de Monitoreo</td>
+                                            <td>Software</td>
+                                            <td>Servidor Mon-01</td>
+                                            <td>Jose López</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Base de Datos de Métricas</td>
+                                            <td>Datos</td>
+                                            <td>Servidor DB-04</td>
+                                            <td>Diego Rodríguez</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sistema de Alertas</td>
+                                            <td>Software</td>
+                                            <td>Servidor Alert-01</td>
+                                            <td>Ricardo Rangel</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Consola de Visualización</td>
+                                            <td>Software</td>
+                                            <td>Servidor Web-02</td>
+                                            <td>Erick Ruiz</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Agentes de Monitoreo</td>
+                                            <td>Software</td>
+                                            <td>Todos los servidores</td>
+                                            <td>Ángel Ramírez</td>
+                                            <td>Sí</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Matriz de Riesgos -->
+            <section class="section bg-light" id="matriz-riesgos">
+                <h2>Matriz de Riesgos (ISO 27000)</h2>
+                <div class="card">
+                    <h3><i class="fas fa-exclamation-triangle card-icon"></i> Matriz CID - Confidencialidad, Integridad, Disponibilidad</h3>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Activo Crítico</th>
+                                    <th>Confidencialidad</th>
+                                    <th>Integridad</th>
+                                    <th>Disponibilidad</th>
+                                    <th>Riesgo Total</th>
+                                    <th>Controles Implementados</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Datos de Clientes</td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-medium">Medio</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td>Encriptación, RBAC, Auditoría</td>
+                                </tr>
+                                <tr>
+                                    <td>Sistema de Tickets</td>
+                                    <td><span class="risk-cell risk-medium">Medio</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td>Backups, Cluster, Monitoreo</td>
+                                </tr>
+                                <tr>
+                                    <td>Plataforma RPA</td>
+                                    <td><span class="risk-cell risk-medium">Medio</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td>Redundancia, DRP, Testing</td>
+                                </tr>
+                                <tr>
+                                    <td>Infraestructura de Red</td>
+                                    <td><span class="risk-cell risk-medium">Medio</span></td>
+                                    <td><span class="risk-cell risk-medium">Medio</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-medium">Medio</span></td>
+                                    <td>Firewalls, IDS/IPS, Redundancia</td>
+                                </tr>
+                                <tr>
+                                    <td>Accesos de Personal</td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td><span class="risk-cell risk-low">Bajo</span></td>
+                                    <td><span class="risk-cell risk-high">Alto</span></td>
+                                    <td>MFA, Políticas de Acceso, Auditoría</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3><i class="fas fa-project-diagram card-icon"></i> Matriz de Infraestructuras Críticas</h3>
+                    <div class="risk-matrix">
+                        <div class="risk-cell risk-high">Servidor DB-01</div>
+                        <div class="risk-cell risk-high">Servidor RPA-01</div>
+                        <div class="risk-cell risk-high">Firewall Principal</div>
+                        <div class="risk-cell risk-medium">Servidor Web-01</div>
+                        <div class="risk-cell risk-medium">Switch Core</div>
+                        <div class="risk-cell risk-high">UPS Data Center</div>
+                        <div class="risk-cell risk-medium">Servidor Backup</div>
+                        <div class="risk-cell risk-low">Estación Trabajo 01</div>
+                        <div class="risk-cell risk-low">Impresora Red</div>
+                        <div class="risk-cell risk-medium">Router Borde</div>
+                    </div>
+                    
+                    <h3><i class="fas fa-shield-alt card-icon"></i> Planes de Mitigación</h3>
+                    <ul>
+                        <li><strong>Datos de Clientes:</strong> Implementar encriptación end-to-end y políticas estrictas de acceso.</li>
+                        <li><strong>Sistema de Tickets:</strong> Configurar cluster de alta disponibilidad y backups automatizados.</li>
+                        <li><strong>Plataforma RPA:</strong> Establecer sitio de recuperación ante desastres (DR) y pruebas periódicas.</li>
+                        <li><strong>Infraestructura de Red:</strong> Implementar redundancia en enlaces críticos y monitoreo 24/7.</li>
+                        <li><strong>Accesos de Personal:</strong> Aplicar autenticación multifactor y revisiones trimestrales de permisos.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- BIA Táctico y Operacional -->
+            <section class="section" id="bia">
+                <h2>BIA Táctico y Operacional</h2>
+                <div class="card">
+                    <div class="tabs">
+                        <div class="tab-header">
+                            <button class="tab-btn active" data-tab="bia1">BIA Táctico 1: Sistema Tickets</button>
+                            <button class="tab-btn" data-tab="bia2">BIA Táctico 2: Plataforma RPA</button>
+                            <button class="tab-btn" data-tab="bia3">BIA Táctico 3: Monitoreo</button>
+                            <button class="tab-btn" data-tab="bia4">BIA Operacional</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="bia1">
+                            <h3>BIA Táctico - Sistema de Gestión de Tickets</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Impacto</th>
+                                            <th>Primera Hora</th>
+                                            <th>Primer Día</th>
+                                            <th>Primera Semana</th>
+                                            <th>RTO Objetivo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Financiero</td>
+                                            <td>$5,000</td>
+                                            <td>$50,000</td>
+                                            <td>$250,000</td>
+                                            <td>4 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Operacional</td>
+                                            <td>Crítico</td>
+                                            <td>Crítico</td>
+                                            <td>Crítico</td>
+                                            <td>4 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reputación</td>
+                                            <td>Alto</td>
+                                            <td>Muy Alto</td>
+                                            <td>Crítico</td>
+                                            <td>2 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Legal/Regulatorio</td>
+                                            <td>Medio</td>
+                                            <td>Alto</td>
+                                            <td>Muy Alto</td>
+                                            <td>8 horas</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><strong>RPO (Recovery Point Objective):</strong> 15 minutos</p>
+                            <p><strong>Estrategia de Recuperación:</strong> Restauración desde backups en sitio secundario</p>
+                        </div>
+                        
+                        <div class="tab-content" id="bia2">
+                            <h3>BIA Táctico - Plataforma de Automatización RPA</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Impacto</th>
+                                            <th>Primera Hora</th>
+                                            <th>Primer Día</th>
+                                            <th>Primera Semana</th>
+                                            <th>RTO Objetivo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Financiero</td>
+                                            <td>$2,000</td>
+                                            <td>$30,000</td>
+                                            <td>$150,000</td>
+                                            <td>8 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Operacional</td>
+                                            <td>Alto</td>
+                                            <td>Crítico</td>
+                                            <td>Crítico</td>
+                                            <td>8 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reputación</td>
+                                            <td>Medio</td>
+                                            <td>Alto</td>
+                                            <td>Muy Alto</td>
+                                            <td>12 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Legal/Regulatorio</td>
+                                            <td>Bajo</td>
+                                            <td>Medio</td>
+                                            <td>Alto</td>
+                                            <td>24 horas</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><strong>RPO (Recovery Point Objective):</strong> 1 hora</p>
+                            <p><strong>Estrategia de Recuperación:</strong> Failover a sitio de contingencia</p>
+                        </div>
+                        
+                        <div class="tab-content" id="bia3">
+                            <h3>BIA Táctico - Sistema de Monitoreo</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Impacto</th>
+                                            <th>Primera Hora</th>
+                                            <th>Primer Día</th>
+                                            <th>Primera Semana</th>
+                                            <th>RTO Objetivo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Financiero</td>
+                                            <td>$1,000</td>
+                                            <td>$10,000</td>
+                                            <td>$50,000</td>
+                                            <td>12 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Operacional</td>
+                                            <td>Medio</td>
+                                            <td>Alto</td>
+                                            <td>Crítico</td>
+                                            <td>12 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Reputación</td>
+                                            <td>Bajo</td>
+                                            <td>Medio</td>
+                                            <td>Alto</td>
+                                            <td>24 horas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Legal/Regulatorio</td>
+                                            <td>Bajo</td>
+                                            <td>Bajo</td>
+                                            <td>Medio</td>
+                                            <td>48 horas</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><strong>RPO (Recovery Point Objective):</strong> 4 horas</p>
+                            <p><strong>Estrategia de Recuperación:</strong> Reconstrucción manual con backups</p>
+                        </div>
+                        
+                        <div class="tab-content" id="bia4">
+                            <h3>BIA Operacional - Servicio Integral de Automatización</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Componente</th>
+                                            <th>MTD (Max Tolerable Downtime)</th>
+                                            <th>RTO Objetivo</th>
+                                            <th>RPO Objetivo</th>
+                                            <th>Recursos Requeridos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Orquestador RPA</td>
+                                            <td>4 horas</td>
+                                            <td>2 horas</td>
+                                            <td>15 minutos</td>
+                                            <td>Servidor, Licencias, Personal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bots Críticos</td>
+                                            <td>2 horas</td>
+                                            <td>1 hora</td>
+                                            <td>5 minutos</td>
+                                            <td>Servidores, Scripts, Configuración</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Integración con Sistemas</td>
+                                            <td>8 horas</td>
+                                            <td>4 horas</td>
+                                            <td>1 hora</td>
+                                            <td>APIs, Configuración, Personal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Base de Datos</td>
+                                            <td>1 hora</td>
+                                            <td>30 minutos</td>
+                                            <td>0 minutos</td>
+                                            <td>Storage, Backup, Personal</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Interfaz de Usuario</td>
+                                            <td>12 horas</td>
+                                            <td>6 horas</td>
+                                            <td>2 horas</td>
+                                            <td>Servidores Web, Personal</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p><strong>MTD General del Servicio:</strong> 4 horas</p>
+                            <p><strong>Estrategia Integral:</strong> Recuperación por fases con priorización de componentes críticos</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plan de Continuidad -->
+            <section class="section bg-light" id="plan-continuidad">
+                <h2>Plan de Continuidad del Negocio</h2>
+                <div class="card">
+                    <h3><i class="fas fa-sitemap card-icon"></i> Estructura del Plan</h3>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>1. Equipo de Continuidad y Responsabilidades</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Rol</th>
+                                            <th>Responsable</th>
+                                            <th>Responsabilidades</th>
+                                            <th>Contacto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Director de Continuidad</td>
+                                            <td>Jose López</td>
+                                            <td>Activación del plan, coordinación general</td>
+                                            <td>553244234</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coordinador Técnico</td>
+                                            <td>Diego Rodríguez</td>
+                                            <td>Recuperación de sistemas y datos</td>
+                                            <td>5579357928</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coordinador Operacional</td>
+                                            <td>Ricardo Rangel</td>
+                                            <td>Continuidad de procesos críticos</td>
+                                            <td>5534353535</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coordinador Comunicaciones</td>
+                                            <td>Erick Ruiz</td>
+                                            <td>Comunicación interna y con clientes</td>
+                                            <td>555324342</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>2. Procedimientos de Activación</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <h4>Niveles de Activación</h4>
+                            <ul>
+                                <li><strong>Nivel 1 (Incidente Menor):</strong> Interrupción < 2 horas, activación equipo técnico</li>
+                                <li><strong>Nivel 2 (Incidente Mayor):</strong> Interrupción 2-8 horas, activación parcial del plan</li>
+                                <li><strong>Nivel 3 (Desastre):</strong> Interrupción > 8 horas, activación total del plan</li>
+                            </ul>
+                            
+                            <h4>Procedimiento de Activación</h4>
+                            <ol>
+                                <li>Detección y notificación del incidente</li>
+                                <li>Evaluación inicial por Director de Continuidad</li>
+                                <li>Declaración del nivel de activación</li>
+                                <li>Notificación al equipo de continuidad</li>
+                                <li>Activación de procedimientos específicos</li>
+                                <li>Monitoreo y comunicación continua</li>
+                                <li>Evaluación post-incidente y mejora</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>3. Estrategias de Recuperación</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <h4>Para Sistemas Críticos</h4>
+                            <ul>
+                                <li><strong>Sitio Caliente:</strong> Para sistemas con RTO < 4 horas (Orquestador RPA, Base de datos)</li>
+                                <li><strong>Sitio Tibio:</strong> Para sistemas con RTO 4-24 horas (Servidores de aplicaciones)</li>
+                                <li><strong>Sitio Frío:</strong> Para sistemas con RTO > 24 horas (Sistemas de reporteo)</li>
+                            </ul>
+                            
+                            <h4>Para Datos</h4>
+                            <ul>
+                                <li><strong>Replicación Síncrona:</strong> Para datos con RPO = 0 (Base de datos transaccional)</li>
+                                <li><strong>Replicación Asíncrona:</strong> Para datos con RPO < 15 min (Datos operativos)</li>
+                                <li><strong>Backups Incrementales:</strong> Para datos con RPO > 1 hora (Datos históricos)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion">
+                        <div class="accordion-header">
+                            <span>4. Plan de Pruebas y Mantenimiento</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <h4>Cronograma de Pruebas</h4>
+                            <ul>
+                                <li><strong>Pruebas de Componentes:</strong> Mensual (restauración de backups, failover)</li>
+                                <li><strong>Pruebas de Integración:</strong> Trimestral (recuperación de sistemas interconectados)</li>
+                                <li><strong>Pruebas Complejas:</strong> Semestral (simulación de desastre completo)</li>
+                                <li><strong>Revisión del Plan:</strong> Anual (actualización según cambios en infraestructura)</li>
+                            </ul>
+                            
+                            <h4>Mantenimiento del Plan</h4>
+                            <ul>
+                                <li>Actualización de contactos y responsabilidades (trimestral)</li>
+                                <li>Revisión de RTO/RPO según cambios en el negocio (semestral)</li>
+                                <li>Actualización de inventario de activos (mensual)</li>
+                                <li>Revisión de contratos con proveedores de contingencia (anual)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background-color: var(--light-gray); border-radius: var(--border-radius);">
+                        <h4><i class="fas fa-file-download"></i> Documentación del Plan</h4>
+                        <p>El plan completo de continuidad del negocio está disponible para descarga:</p>
+                        <a href="plan_continuidad_rddie.pdf" download class="btn"><i class="fas fa-download"></i> Descargar Plan de Continuidad (PDF)</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RDDIE INNOVATION S.A. de C.V.</h3>
+                    <p>Soluciones Integrales de Tecnologías de la Información</p>
+                    <p>Optimizamos operaciones empresariales mediante innovación tecnológica y mejora continua.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> contacto@rddieinnovation.com</p>
+                    <p><i class="fas fa-phone"></i> +52 55 1234 5678</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Ciudad de México, México</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <p><a href="#inicio">Inicio</a></p>
+                    <p><a href="#servicio">Servicios IT</a></p>
+                    <p><a href="#documentos">Documentación</a></p>
+                    <p><a href="#contacto">Contacto</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Marcos de Referencia</h3>
+                    <p><i class="fas fa-check-circle"></i> COBIT</p>
+                    <p><i class="fas fa-check-circle"></i> ITIL</p>
+                    <p><i class="fas fa-check-circle"></i> ISO 27000</p>
+                    <p><i class="fas fa-check-circle"></i> Balanced Scorecard</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 RDDIE INNOVATION S.A. de C.V. - Todos los derechos reservados.</p>
+                <p>Este sitio presenta el marco de Gobierno de TI de la empresa.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menú móvil
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+            
+            // Cambiar icono
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Navegación lateral activa
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        const sections = document.querySelectorAll('section');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Acordeón
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // Cerrar otros acordeones
+                accordionHeaders.forEach(otherHeader => {
+                    if (otherHeader !== this) {
+                        otherHeader.classList.remove('active');
+                        otherHeader.nextElementSibling.style.display = 'none';
+                        otherHeader.querySelector('i').classList.remove('fa-chevron-up');
+                        otherHeader.querySelector('i').classList.add('fa-chevron-down');
+                    }
+                });
+                
+                // Alternar actual
+                this.classList.toggle('active');
+                
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                } else {
+                    content.style.display = 'block';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
+        });
+
+        // Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Remover activo de todos los botones y contenidos
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Activar actual
+                this.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Animar barras de progreso al hacer scroll
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        }
+
+        // Observador para animar elementos al entrar en vista
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'metas-corporativas') {
+                        animateProgressBars();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observar sección de metas corporativas
+        const metasSection = document.getElementById('metas-corporativas');
+        if (metasSection) {
+            observer.observe(metasSection);
+        }
+
+        // Inicializar acordeones cerrados
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionContents = document.querySelectorAll('.accordion-content');
+            accordionContents.forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Inicializar primera pestaña activa en cada grupo de tabs
+            const tabGroups = document.querySelectorAll('.tabs');
+            tabGroups.forEach(group => {
+                const firstTab = group.querySelector('.tab-btn');
+                if (firstTab) {
+                    const tabId = firstTab.getAttribute('data-tab');
+                    firstTab.classList.add('active');
+                    const firstContent = document.getElementById(tabId);
+                    if (firstContent) {
+                        firstContent.classList.add('active');
+                    }
+                }
+            });
+            
+            // Inicializar smooth scroll para todos los enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Solo procesar enlaces internos que no sean solo "#"
+                    if (href !== '#' && href.startsWith('#')) {
+                        e.preventDefault();
+                        
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                            
+                            // Cerrar menú móvil si está abierto
+                            const navMenu = document.getElementById('navMenu');
+                            const mobileBtnIcon = document.querySelector('#mobileMenuBtn i');
+                            
+                            if (navMenu.classList.contains('active')) {
+                                navMenu.classList.remove('active');
+                                mobileBtnIcon.classList.remove('fa-times');
+                                mobileBtnIcon.classList.add('fa-bars');
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
+        // Simular descarga de archivos si no existen
+        document.querySelectorAll('a[download]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Si el archivo no existe realmente, mostrar mensaje
+                if (!this.href || this.href === '#' || this.href.includes('javascript')) {
+                    e.preventDefault();
+                    alert('En producción, estos enlaces descargarían los archivos PDF correspondientes. Para este demo, se simula la descarga.');
+                    
+                    // Crear archivos PDF simulados
+                    const filename = this.getAttribute('download');
+                    const blob = new Blob(['Contenido del archivo ' + filename], {type: 'application/pdf'});
+                    const url = URL.createObjectURL(blob);
+                    
+                    // Crear enlace temporal para descarga
+                    const tempLink = document.createElement('a');
+                    tempLink.href = url;
+                    tempLink.download = filename;
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+                    URL.revokeObjectURL(url);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
