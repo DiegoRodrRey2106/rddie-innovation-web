@@ -726,11 +726,12 @@
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#introduccion">Introducción</a></li>
-                <li><a href="#servicio">Servicio IT</a></li>
-                <li><a href="#empresa">Empresa</a></li>
-                <li><a href="#metas">Metas</a></li>
-                <li><a href="#documentos">Documentos</a></li>
-                <li><a href="#continuidad">Continuidad</a></li>
+                <li><a href="#objetivo">Objetivo</a></li>
+                <li><a href="#descripcion">Descripción</a></li>
+                <li><a href="#mision-vision-valores">Empresa</a></li>
+                <li><a href="#metas-corporativas">Metas</a></li>
+                <li><a href="#caso-negocio">Documentos</a></li>
+                <li><a href="#plan-continuidad">Continuidad</a></li>
             </ul>
         </div>
     </header>
@@ -741,7 +742,6 @@
             <h1>Gobierno de TI Integral</h1>
             <p>Soluciones tecnológicas innovadoras alineadas con los objetivos estratégicos de negocio, utilizando marcos de referencia COBIT, ITIL e ISO 27000 para garantizar excelencia operativa y seguridad de la información.</p>
             <div class="hero-buttons">
-                <a href="#documentos" class="btn">Ver Documentación</a>
                 <a href="#contacto" class="btn btn-accent">Contactar</a>
             </div>
         </div>
@@ -768,16 +768,7 @@
                 <li><a href="#bia">BIA Táctico y Operacional</a></li>
                 <li><a href="#plan-continuidad">Plan de Continuidad</a></li>
             </ul>
-            
-            <div class="card" style="margin-top: 2rem;">
-                <h3><i class="fas fa-download card-icon"></i> Descargables</h3>
-                <p>Documentos completos en formato PDF:</p>
-                <ul>
-                    <li><a href="caso_negocio_rddie.pdf" download><i class="fas fa-file-pdf"></i> Caso de Negocio</a></li>
-                    <li><a href="cedula_servicio_itil.pdf" download><i class="fas fa-file-pdf"></i> Cédula de Servicio</a></li>
-                    <li><a href="plan_continuidad.pdf" download><i class="fas fa-file-pdf"></i> Plan de Continuidad</a></li>
-                </ul>
-            </div>
+          
         </aside>
 
         <!-- Contenido principal -->
@@ -1584,7 +1575,6 @@
                                             <td>Todos los servidores</td>
                                             <td>Ángel Ramírez</td>
                                             <td>Sí</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -2024,11 +2014,7 @@
                         </div>
                     </div>
                     
-                    <div style="margin-top: 2rem; padding: 1.5rem; background-color: var(--light-gray); border-radius: var(--border-radius);">
-                        <h4><i class="fas fa-file-download"></i> Documentación del Plan</h4>
-                        <p>El plan completo de continuidad del negocio está disponible para descarga:</p>
-                        <a href="plan_continuidad_rddie.pdf" download class="btn"><i class="fas fa-download"></i> Descargar Plan de Continuidad (PDF)</a>
-                    </div>
+        
                 </div>
             </section>
         </main>
@@ -2251,31 +2237,6 @@
                         }
                     }
                 });
-            });
-        });
-
-        // Simular descarga de archivos si no existen
-        document.querySelectorAll('a[download]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Si el archivo no existe realmente, mostrar mensaje
-                if (!this.href || this.href === '#' || this.href.includes('javascript')) {
-                    e.preventDefault();
-                    alert('En producción, estos enlaces descargarían los archivos PDF correspondientes. Para este demo, se simula la descarga.');
-                    
-                    // Crear archivos PDF simulados
-                    const filename = this.getAttribute('download');
-                    const blob = new Blob(['Contenido del archivo ' + filename], {type: 'application/pdf'});
-                    const url = URL.createObjectURL(blob);
-                    
-                    // Crear enlace temporal para descarga
-                    const tempLink = document.createElement('a');
-                    tempLink.href = url;
-                    tempLink.download = filename;
-                    document.body.appendChild(tempLink);
-                    tempLink.click();
-                    document.body.removeChild(tempLink);
-                    URL.revokeObjectURL(url);
-                }
             });
         });
     </script>
